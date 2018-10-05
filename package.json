@@ -19,6 +19,7 @@
   "homepage": "https://github.com/justingorham/egghead.io-JSON-Web-Token-Authentication-with-Node.js-and-Auth0#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0"
