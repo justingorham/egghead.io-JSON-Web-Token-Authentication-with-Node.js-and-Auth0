@@ -1,10 +1,10 @@
 {
-  "name": "JSON-Web-Token-Authentication-with-Node.js-and-Auth0",
+  "name": "json-web-token-authentication-with-node.js-and-auth0",
   "version": "1.0.0",
   "description": "(2) Setup a Web Server in NOde.js using Express",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node api"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "express-jwt": "^5.3.1",
-    "jsonwebtoken": "^8.3.0"
+    "jsonwebtoken": "^8.3.0",
+    "serve-static": "^1.13.2"
   }
 }
