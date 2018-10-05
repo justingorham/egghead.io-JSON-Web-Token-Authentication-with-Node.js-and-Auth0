@@ -1,0 +1,23 @@
+{
+  "name": "JSON-Web-Token-Authentication-with-Node.js-and-Auth0",
+  "version": "1.0.0",
+  "description": "(2) Setup a Web Server in NOde.js using Express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justingorham/egghead.io-JSON-Web-Token-Authentication-with-Node.js-and-Auth0.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/justingorham/egghead.io-JSON-Web-Token-Authentication-with-Node.js-and-Auth0/issues"
+  },
+  "homepage": "https://github.com/justingorham/egghead.io-JSON-Web-Token-Authentication-with-Node.js-and-Auth0#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
