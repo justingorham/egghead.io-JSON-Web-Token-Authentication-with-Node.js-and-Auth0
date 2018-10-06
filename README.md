@@ -6,4 +6,5 @@
 (5) Provide Users With A JSON Web Token\
 (6) Allow CORS in Node.js and Express\
 (7) Authenticate Users With JWT for Access to Protected Resources\
-(8) Connect a Front-End to a Secure API using JWTs
+(8) Connect a Front-End to a Secure API using JWTs\
+(9) Authenticate Users in a Single Page Application with Auth0

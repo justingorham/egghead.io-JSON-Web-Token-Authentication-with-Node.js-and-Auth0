@@ -1,7 +1,11 @@
 const API_URL = "http://localhost:5000";
-const AUTH_URL = "http://localhost:5000"; //Keeping them on same port to minimize example code
 
 let ACCESS_TOKEN;
+const webAuthPromise = fetch("./webAuth.json")
+    .then(resp => resp.json())
+    .then(data => new auth0.WebAuth({ ...data,
+        redirectUri: window.location.href
+    }));
 
 const headlineBtn = document.querySelector("#headline");
 const secretBtn = document.querySelector("#secret");
@@ -38,24 +42,19 @@ logoutBtn.addEventListener("click", (event) => {
 });
 
 loginBtn.addEventListener("click", (event) => {
-    fetch(`${AUTH_URL}/login`, {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json",
-                "accept": "application/json",
-            },
-            body: JSON.stringify(UIUpdate.getUsernamePassword())
-        })
-        .then(resp => {
-            UIUpdate.updateCat(resp.status);
-            return resp.status == 200 ? resp.json() : resp.text();
-        })
-        .then(data => {
-            if (data.access_token) {
-                ACCESS_TOKEN = data.access_token;
-                data = `Access Token: ${ACCESS_TOKEN}`
+    webAuthPromise.then(webAuth => webAuth.authorize());
+});
+
+const parseHash = () => {
+    webAuthPromise
+        .then(webAuth => webAuth.parseHash(function (err, authResult) {
+            if (authResult && authResult.idToken) {
+                window.location.hash = '';
+                ACCESS_TOKEN = authResult.idToken;
+                localStorage.setItem("access_token", ACCESS_TOKEN)
                 UIUpdate.loggedIn();
             }
-            UIUpdate.alertBox(data);
-        })
-});
+        }));
+}
+
+window.addEventListener("DOMContentLoaded", parseHash);

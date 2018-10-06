@@ -9,9 +9,7 @@ const serveStatic = require('serve-static')
 const app = express();
 const PORT = process.env.API_PORT || 8888;
 const SECRET = process.env.SECRET || "mysupersecretkey";
-const jwtCheck = expressjwt({
-    secret: SECRET
-});
+const jwtCheck = expressjwt(require("./jwtCheck.json"));
 
 const users = [{
         id: 1,
@@ -37,38 +35,6 @@ app.get("/resource", (req, res) => {
 app.get("/resource/secret", jwtCheck, (req, res) => {
     res.status(200).send("Secret resource, you should be logged in to see this")
 });
-
-app.post("/login", (req, res) => {
-    const {
-        username,
-        password
-    } = req.body;
-    if (!username || !password) {
-        return res
-            .status(400)
-            .send("You need a username and password");
-    }
-
-    Promise.resolve(users.find((u) => {
-            return u.username === username && u.password === password;
-        }))
-        .then(user => {
-            if (!user) {
-                return res.status(401).send("User not found");
-            }
-            const access_token = jwt.sign({
-                sub: user.id,
-                username: user.username
-            }, SECRET, {
-                expiresIn: "3 hours"
-            });
-
-            res.status(200).send({
-                access_token
-            })
-        })
-
-})
 
 app.get("*", (req, res) => {
     res.sendStatus(404);
